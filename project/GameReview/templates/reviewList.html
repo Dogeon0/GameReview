@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+
+{% block contenidoCambiable %}
+
+
+    <!-- Header-->
+    <header class="bg-danger text-white">
+        <div class="container px-4 text-center">
+            <h1 class="fw-bolder">DogeReviews</h1>
+            <p class="lead">Aca podras ver reviews de juegos basadas en ciertos criterios</p>
+            <a class="btn btn-lg btn-light" href="#about">Sobre mi</a>
+        </div>
+    </header>
+
+    <section class="text-light p-md-5 " >
+        <div class="container px-4">
+            <div class="row gx-4 ">
+                <div class="col-lg-8">
+                <a class="link-light text-center fs-4 " href="{%url 'GameReview:ReviewAgregar'%}">Agregar una review</a>
+                </div>
+            </div>  
+        </div>
+    </section>
+    {% for review in reviews %}
+        <!-- Services section-->
+        <section class="text-light ">
+            <div class="container px-4">
+                <div class="row gx-4 ">
+                    <div class="col-lg-8">
+                        <li>{{review.titulo}}
+                            {% if review.imagen %}
+                            <img src="{{ review.imagen.url }}" width="20%" height="20%" alt="{{ review.juego }} Image">
+                            {% else %}
+                                <p>No image available</p>
+                            {% endif %}
+                            <p>
+                                <a class="link-light" href="{%url 'GameReview:ReviewDetalle' review.id %}">Detalles</a>
+                                <a class="link-light" href="{%url 'GameReview:ReviewEditar'  review.id %}">Editar</a>
+                                <a class="link-light" href="{%url 'GameReview:ReviewBorrar'  review.id %}">Borrar</a>
+                            </p>
+                        </li>                    
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    {% endfor %}
+
+
+    
+
+{% endblock contenidoCambiable %}

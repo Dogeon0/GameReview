@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block contenidoCambiable %}
+    <!-- Header-->
+    <header class="bg-danger text-white">
+        <div class="container px-4 text-center">
+            <h1 class="fw-bolder">DogeReviews</h1>
+            <p class="lead">Aca podras ver reviews de juegos basadas en ciertos criterios</p>
+            <a class="btn btn-lg btn-light" href="{% url 'GameReview:About' %}">Sobre mi</a>
+        </div>
+    </header>
+    <!-- Services section-->
+    <section class="bg-dark  text-white" id="services">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <h2>Juego favorito</h2>
+                    <p class="lead">Ahora mismo, mi juego favorito, y lo ha sido durante años, es ULTRAKILL. Este increíble juego de acción en primera persona ha capturado mi atención de una manera que pocos otros han logrado. Su combinación de estilo retro, acción vertiginosa y diseño innovador lo hacen destacar en un mar de títulos similares.
+
+                        De hecho, ULTRAKILL ha tenido un impacto tan significativo en mí que decidí dedicarle la primera reseña en este blog. Quería compartir con todos vosotros por qué este juego es tan especial y merece ser conocido por más jugadores. En mi reseña, exploraré en profundidad sus mecánicas de juego, la estética visual, la música y por qué, en mi opinión, se ha convertido en un clásico moderno. Espero que, al leerla, también descubran la magia que yo encontré en este título extraordinario.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact section-->
+    <section class="bg-dark text-white" id="Contact">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <h2>Contactame</h2>
+                    <button class="btn btn-outline-info "><a class="link-light " href="https://www.linkedin.com/in/snciso/">Linkedin</a></button>
+                    <button class="btn btn-outline-info "><a class="link-light " href="https://github.com/Dogeon0">Github</a></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock contenidoCambiable %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block contenidoCambiable %}
+
+    <!-- Header-->
+    <header class="bg-danger bg-gradient text-white">
+        <div class="container px-4 text-center">
+            <h1 class="fw-bolder">Detalles</h1>
+        </div>
+    </header>
+    <section class="" id="services">
+        <div class="container px-4">
+            <div class="row gx-4 ">
+                <div class="col-lg-8 mb-lg-3 ">
+                    <h1>{{gamereview.titulo}}</h1>
+                    <h5>{{gamereview.subtitulo}}</h5>
+                    <h6>{{gamereview.review}}</h6>
+                    {% if gamereview.imagen %}
+                            <img src="{{ gamereview.imagen.url }}" width="50%" height="50%" alt="{{ gamereview.juego }} Image">
+                    {% else %}
+                        <p>No image available</p>
+                    {% endif %}
+                    <h5>hecho por {{gamereview.autor}}  {{gamereview.fecha}}</h5>
+                    <h1>Rating:  {{gamereview.rating}}/10</h1>
+
+
+
+                    
+                </div>
+            </div>  
+        </div>
+    </section>
+{% endblock contenidoCambiable %}

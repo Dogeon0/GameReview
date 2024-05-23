@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {%load static%}
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Doge reviews</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico'%}" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css'%}" rel="stylesheet" />
+    </head>
+    <body class="bg-dark link-light " id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top" id="mainNav">
+            <div class="container px-4">
+                <a class="navbar-brand" href="{% url 'GameReview:Index' %}">DogeReviews</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'GameReview:About' %}">Sobre Mi</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'GameReview:ReviewListar' %}">Reviews</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'GameReview:Index' %}#Contact">Contacto</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'GameReview:Pages' %}">All pages</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Messages:Inbox' %}">Mensajes</a></li>
+                            <li class="nav-item"><a class="nav-link link-light  " href="{% url 'Accounts:Profile' %}">{{user.username}}</a></li>
+                            <li class="nav-item"><form action="{% url 'Accounts:Logout' %}" method="post"> 
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-black text-white-50  ">Logout</button>
+                            </form>
+                        </li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Accounts:Login' %}">Login</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Accounts:Register' %}">Registro</a></li>
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block contenidoCambiable %}
+        {% endblock contenidoCambiable %}
+        
+        <!-- Footer-->
+        <footer class="footer fixed-bottom py-lg-4  bg-black">
+            <div class="container px-4">
+                <p class="m-0 text-center text-white">Copyright &copy; Dogeon 2024</p>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

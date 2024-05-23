@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block contenidoCambiable %}
+    <section class="link-light p-6">
+        <div class=" container px-4">
+            <div class=" row gx-4 ">
+                <div class="col-lg-8">
+                  <h1 class="display-6">Enviados</h1>
+                    <ul>
+                        {% for message in messages %}
+                          <li>
+                            <a class="fs-3 link-light text-light  " href="{% url 'Messages:MsjLeer' message.pk %}">
+                              {{ message.tema }} - to {{ message.receptor }} ({{ message.timestamp }})
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                      <button class="btn btn-outline-primary    fs-4">
+                        <a class="link-light" href="{% url 'Messages:Inbox'%}">Volver</a>
+                    </button>
+                </div>
+            </div>  
+        </div>
+    </section>
+{% endblock contenidoCambiable %}
+
+

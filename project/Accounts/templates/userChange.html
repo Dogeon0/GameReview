@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block contenidoCambiable %}
+        
+    <section class="" id="Login">
+        <div class="container px-4">
+            <div class="row gx-4 ">
+                <div class="col-lg-8">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.email.label_tag }}
+                        {{ form.email }}
+                        <br>
+                        {{ form.username.label_tag }}
+                        {{ form.username }}
+                        <br>
+                        {% if form.password %}
+                          <br>
+                        {% endif %}
+                        <button type="submit" class="btn btn-success  ">Editar</button>
+                    </form>
+                    <a class="link-light" href="{%url 'Accounts:PasswordChange' %}">Cambiar contrasena</a>
+                </div>
+            </div>  
+        </div>
+    </section>
+{% endblock contenidoCambiable %}
+
+

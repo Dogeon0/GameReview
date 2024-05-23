@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block contenidoCambiable %}
+        
+    <section class="" id="Login">
+        <div class="container px-4">
+            <div class="row gx-4 ">
+                <div class="col-lg-8">
+                    <form class="fs-4" method="post">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <input type="hidden" name="next" value="{%url 'GameReview:Index'%}">
+                        <button type="submit" class="btn btn-primary ">Iniciar Sesion</button>
+                    </form>
+                    
+                </div>
+            </div>  
+        </div>
+    </section>
+{% endblock contenidoCambiable %}
+
+

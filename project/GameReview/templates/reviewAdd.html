@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block contenidoCambiable %}
+        <!-- Header-->
+        <header class="bg-danger bg-gradient text-white">
+            <div class="container px-4 text-center">
+                <h1 class="fw-bolder">Agregar review</h1>
+            </div>
+        </header>
+    <section class="" id="services">
+        <div class="container px-4">
+            <div class="row gx-4 ">
+                <div class="col-lg-8">
+                    <form class="fs-5 " action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Crear">
+                    </form>
+                    
+                </div>
+            </div>  
+        </div>
+    </section>
+{% endblock contenidoCambiable %}

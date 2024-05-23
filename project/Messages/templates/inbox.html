@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block contenidoCambiable %}
+    <section class="link-light p-md-5 navbar-link m-3 d-flex justify-content-center">
+      <div class="bg-dark container">
+        <div class="container px-lg-5">
+          <div class="row gx-lg-4 justify-content-center">
+            <div class="col-lg-4 text-center">
+              <button class="btn btn-danger fs-4">
+                <a class="link-light" href="{% url 'Messages:MsjEnviar'%}">Enviar Mensaje</a>
+              </button>
+              <button class="btn btn-danger  fs-4">
+                <a class="link-light" href="{% url 'Messages:MsjEnviados'%}">Enviados</a>
+              </button>
+            </div>
+          </div>
+        </div>  
+      </div>
+    </section>
+    <section class="link-light p-6" id="Login">
+      <div class="bg-black rounded container px-4">
+        <div class=" row gx-4 ">
+          <div class="col-lg-8">
+            <h1 class="display-6">Inbox</h1>
+            <ul>
+                {% for message in messages %}
+                  <li>
+                    <a class="fs-3 link-light text-light  " href="{% url 'Messages:MsjLeer' message.pk %}">
+                      {{ message.tema }} - from {{ message.emisor }} ({{ message.timestamp }})
+                    </a>
+                    {% if not message.leido %}<strong>New</strong>{% endif %}
+                  </li>
+                {% endfor %}
+            </ul>
+          </div>
+        </div>  
+      </div>
+    </section>
+{% endblock contenidoCambiable %}
+
+
+
+
