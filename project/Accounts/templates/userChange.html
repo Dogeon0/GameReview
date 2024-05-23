@@ -16,6 +16,7 @@
                         {% if form.password %}
                           <br>
                         {% endif %}
+                        {{profile_form.as_p}}
                         <button type="submit" class="btn btn-success  ">Editar</button>
                     </form>
                     <a class="link-light" href="{%url 'Accounts:PasswordChange' %}">Cambiar contrasena</a>

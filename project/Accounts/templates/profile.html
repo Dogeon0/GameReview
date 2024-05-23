@@ -5,11 +5,15 @@
         <div class="container px-4">
             <div class="row gx-4 ">
                 <div class="col-lg-8">
+                    {% if profile.avatar %}
+                        <img src="{{ profile.avatar.url }}" alt="Avatar" style="width: 150px; height: 150px;">
+                    {% else %}
+                        <p>No Avatar</p>
+                    {% endif %}
                     <h1>Bienvenido {{user.username}}</h1>
                     <h4>Email:          {{user.email}} </h4>
                     <h4>Contrasena:     hidden</h4>
                     <button class="btn btn-outline-info "><a class="link-light " href="{%url 'Accounts:EditProfile' %}">Editar usuario</a></button>
-                    
                 </div>
             </div>  
         </div>

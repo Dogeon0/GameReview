@@ -18,12 +18,18 @@ def register(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data["username"]
-            form.save()
+            user = form.save()
+            profile_form = ProfileForm(request.POST, request.FILES, instance=user.profile)
+            if profile_form.is_valid():
+                profile_form.save()
             return render(request, "index.html")
-    else:    
+    else:
         form = CustomUserCreationForm()
-    return render(request,"register.html",{"form": form})
+        profile_form = ProfileForm()
+    return render(request, "register.html", {
+        "form": form,
+        "profile_form": profile_form
+    })
 
 @login_required
 def accHome(request):
@@ -31,18 +37,26 @@ def accHome(request):
 
 @login_required
 def profiles(request):
-    return render(request,"profile.html")
+    profile = request.user.profile
+    return render(request, "profile.html", {"profile": profile})
+
 
 
 def UserChange(request):
     if request.method == "POST":
         form = CustomUserChangeForm(request.POST, instance=request.user)
-        if form.is_valid():
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid() and profile_form.is_valid():
             form.save()
-            return redirect('Accounts:Profile') 
-    else:    
+            profile_form.save()
+            return redirect('Accounts:Profile')
+    else:
         form = CustomUserChangeForm(instance=request.user)
-    return render(request, "userchange.html", {"form": form})
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, "userchange.html", {
+        "form": form,
+        "profile_form": profile_form
+    })
 
 @login_required
 def password_change(request):
