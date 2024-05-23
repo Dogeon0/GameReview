@@ -19,14 +19,15 @@ def register(request: HttpRequest) -> HttpResponse:
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            Profile.objects.create(user=user)
+            # The profile will be created by the signal
             profile_form = ProfileForm(request.POST, request.FILES, instance=user.profile)
             if profile_form.is_valid():
                 profile_form.save()
-            return redirect('index')
+                return redirect('GameReview:Index')
     else:
         form = CustomUserCreationForm()
         profile_form = ProfileForm()
+
     return render(request, "register.html", {
         "form": form,
         "profile_form": profile_form
