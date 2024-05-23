@@ -19,10 +19,11 @@ def register(request: HttpRequest) -> HttpResponse:
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            Profile.objects.create(user=user)
             profile_form = ProfileForm(request.POST, request.FILES, instance=user.profile)
             if profile_form.is_valid():
                 profile_form.save()
-            return render(request, "index.html")
+            return redirect('index')
     else:
         form = CustomUserCreationForm()
         profile_form = ProfileForm()
@@ -41,7 +42,7 @@ def profiles(request):
     return render(request, "profile.html", {"profile": profile})
 
 
-
+@login_required
 def UserChange(request):
     if request.method == "POST":
         form = CustomUserChangeForm(request.POST, instance=request.user)

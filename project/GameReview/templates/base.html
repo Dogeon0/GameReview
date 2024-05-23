@@ -25,13 +25,19 @@
                             <li class="nav-item"><a class="nav-link" href="{% url 'GameReview:Index' %}#Contact">Contacto</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'GameReview:Pages' %}">All pages</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'Messages:Inbox' %}">Mensajes</a></li>
-                            {% if request.user.avatar %}
-                            <li class="nav-item"><img src="{{request.user.avatar.imagen.url}}" alt="" height="40px" width="40px"></li>
-                            {% endif %}
-                            <li class="nav-item"><a class="nav-link link-light  " href="{% url 'Accounts:Profile' %}">{{user.username}}</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link link-light" href="{% url 'Accounts:Profile' %}">
+                                    {{ user.username }}
+                                    {% if request.user.profile.avatar %}
+                                        <img src="{{ request.user.profile.avatar.url }}" alt="Avatar" style="width: 30px; height: 30px; border-radius: 50%;">
+                                    {% else %}
+                                        <span class="fa fa-user-circle-o fa-lg"></span> <!-- Placeholder or default avatar -->
+                                    {% endif %}
+                                </a>
+                            </li>
                             <li class="nav-item"><form action="{% url 'Accounts:Logout' %}" method="post"> 
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-black text-white-50  ">Logout</button>
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-black text-white-50  ">Logout</button>
                             </form>
                         </li>
                         {% else %}
